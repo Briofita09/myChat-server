@@ -14,4 +14,10 @@ userRouter.post(
   userController.createUser
 );
 
+userRouter.post(
+  "/login",
+  validateSchemaMiddleware(LoginSchema),
+  userController.loginUser
+);
+
 export { userRouter };

@@ -1,4 +1,7 @@
 import bcrypt from "bcrypt";
+import "dotenv/config";
+import jwt from "jsonwebtoken";
+
 import * as userRepository from "../../repositories/userRepository/userRepository.js";
 
 const numberOfSalts = 10;
@@ -15,4 +18,21 @@ export async function createUser(user) {
     password: hashedPassword,
   });
   return newUser;
+}
+
+export async function loginUser(user) {
+  const userExist = await userRepository.findUserByEmail(user.email);
+
+  if (!userExist) return null;
+
+  console.log(userExist);
+
+  if (!bcrypt.compareSync(user.password, userExist.password)) return null;
+
+  const expiresIn = process.env.EXPIRES_IN;
+  const secretToken = process.env.SECRET_TOKEN;
+
+  const token = jwt.sign({ user: userExist.id }, secretToken, { expiresIn });
+
+  return token;
 }

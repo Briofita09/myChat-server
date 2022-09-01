@@ -15,8 +15,8 @@ model User {
   name          String
   password      String
   email         String @unique
-  channelId     Int
-  channel       Channel @relation(fields: [channelId], references: [id])
+  channelId     Int?
+  channel       Channel? @relation(fields: [channelId], references: [id])
   followedBy    User[]  @relation("UserFollows")
   following     User[]  @relation("UserFollows")
   messages      Message[]

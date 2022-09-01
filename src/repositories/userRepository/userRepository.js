@@ -1,11 +1,11 @@
 import { prisma } from "../../database/database.js";
 
-export async function createUser(user, password) {
+export async function createUser(user) {
   const newUser = await prisma.user.create({
     data: {
       email: user.email,
       name: user.name,
-      password,
+      password: user.password,
     },
   });
   return newUser;

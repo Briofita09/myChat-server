@@ -14,3 +14,19 @@ export async function createUser(req, res) {
     console.log(err);
   }
 }
+
+export async function loginUser(req, res) {
+  try {
+    const user = req.body;
+
+    const confirmedUser = await userService.loginUser(user);
+
+    if (!confirmedUser) {
+      return res.status(401).json({ message: "Email e/ou senha inválidos" });
+    }
+
+    return res.status(200).json({ token: confirmedUser });
+  } catch (err) {
+    console.log(err);
+  }
+}
