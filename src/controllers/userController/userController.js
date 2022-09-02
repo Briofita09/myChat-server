@@ -41,7 +41,7 @@ export async function getUser(_req, res) {
     if (!user)
       return res.status(404).json({ message: "Usuário não encontrado" });
 
-    return res.status(200).json(user);
+    return res.status(200).json({ name: user.name, email: user.email });
   } catch (err) {
     console.log(err);
   }
