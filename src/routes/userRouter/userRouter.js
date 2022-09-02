@@ -23,4 +23,10 @@ userRouter.post(
 
 userRouter.get("/profile", isAuhtenticatedMiddleware, userController.getUser);
 
+userRouter.put(
+  "/edit-profile",
+  isAuhtenticatedMiddleware,
+  userController.editProfile
+);
+
 export { userRouter };

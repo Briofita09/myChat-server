@@ -25,8 +25,6 @@ export async function loginUser(user) {
 
   if (!userExist) return null;
 
-  console.log(userExist);
-
   if (!bcrypt.compareSync(user.password, userExist.password)) return null;
 
   const expiresIn = process.env.EXPIRES_IN;
@@ -35,4 +33,12 @@ export async function loginUser(user) {
   const token = jwt.sign({ user: userExist.id }, secretToken, { expiresIn });
 
   return token;
+}
+
+export async function editProfile(id, editedUser) {
+  const user = await userRepository.findUserById(id);
+
+  if (!user) return null;
+
+  return await userRepository.editProfile(user.id, editedUser);
 }

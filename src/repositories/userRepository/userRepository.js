@@ -28,3 +28,14 @@ export async function findUserById(id) {
   });
   return user;
 }
+
+export async function editProfile(id, user) {
+  const editedUser = await prisma.user.update({
+    where: { id },
+    data: {
+      name: user.name,
+      email: user.email,
+    },
+  });
+  return editedUser;
+}

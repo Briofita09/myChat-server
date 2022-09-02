@@ -1,6 +1,9 @@
 {
   "name": "mychat-server",
   "version": "1.0.0",
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "type": "module",
   "description": "",
   "main": "index.js",

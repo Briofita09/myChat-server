@@ -41,7 +41,25 @@ export async function getUser(_req, res) {
     if (!user)
       return res.status(404).json({ message: "Usuário não encontrado" });
 
-    return res.status(200).json({ name: user.name, email: user.email });
+    return res
+      .status(200)
+      .json({ name: user.name, email: user.email, channel: user.channelId });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function editProfile(req, res) {
+  try {
+    const user = res.locals;
+    const editedUser = req.body;
+
+    const newUser = await userService.editProfile(user, editedUser);
+
+    if (!newUser)
+      return res.status(404).json({ message: "Usuário não encontrado" });
+
+    return res.status(200).json({ message: "Usuário editado com sucesso" });
   } catch (err) {
     console.log(err);
   }
