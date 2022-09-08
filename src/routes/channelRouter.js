@@ -11,10 +11,4 @@ channelRouter.get(
   channelController.getAll
 );
 
-channelRouter.post(
-  "/get-in/:serverId",
-  isAuhtenticatedMiddleware,
-  channelController.enterChannel
-);
-
 export { channelRouter };

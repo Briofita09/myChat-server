@@ -39,3 +39,15 @@ export async function editProfile(id, user) {
   });
   return editedUser;
 }
+
+export async function enterChannel(channelId, userId) {
+  const newChannel = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      channel: { connect: { id: parseInt(channelId) } },
+    },
+  });
+  return newChannel;
+}

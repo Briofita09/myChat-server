@@ -42,3 +42,11 @@ export async function editProfile(id, editedUser) {
 
   return await userRepository.editProfile(user.id, editedUser);
 }
+
+export async function enterChannel(channelId, userId) {
+  const user = await userRepository.enterChannel(channelId, userId);
+
+  if (!user) return null;
+
+  return user;
+}

@@ -64,3 +64,22 @@ export async function editProfile(req, res) {
     console.log(err);
   }
 }
+
+export async function enterChannel(req, res) {
+  try {
+    const { channelId } = req.params;
+    const userId = res.locals;
+
+    const user = await userService.enterChannel(channelId, userId);
+
+    if (!user)
+      return res.status(500).json({ message: "Ocorreu um erro no servidor" });
+    console.log(channelId);
+    return res
+      .status(200)
+      .json({ message: `Usuario logado no canal ${channelId}` });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Ocorreu um erro no servidor" });
+  }
+}

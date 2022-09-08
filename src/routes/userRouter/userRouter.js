@@ -29,4 +29,10 @@ userRouter.put(
   userController.editProfile
 );
 
+userRouter.post(
+  "/channels/:channelId",
+  isAuhtenticatedMiddleware,
+  userController.enterChannel
+);
+
 export { userRouter };
