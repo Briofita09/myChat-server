@@ -41,4 +41,10 @@ userRouter.delete(
   userController.disconnect
 );
 
+userRouter.get(
+  "/channel-users/:channelId",
+  isAuhtenticatedMiddleware,
+  userController.getUsersInChannel
+);
+
 export { userRouter };

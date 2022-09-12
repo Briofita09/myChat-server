@@ -95,3 +95,16 @@ export async function disconnect(_req, res) {
     return res.status(500).json({ message: "Ocorreu um erro no servidor" });
   }
 }
+
+export async function getUsersInChannel(req, res) {
+  try {
+    const { channelId } = req.params;
+
+    const users = await userRepository.getUsersInChannel(channelId);
+
+    return res.status(200).json(users);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Ocorreu um erro no servidor" });
+  }
+}

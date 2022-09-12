@@ -8,13 +8,3 @@ export async function getAll(req, res) {
     console.log(err);
   }
 }
-
-export async function enterChannel(req, res) {
-  try {
-    const { serverId } = req.params;
-    console.log(serverId);
-    return res.sendStatus(200);
-  } catch (err) {
-    console.log(err);
-  }
-}

@@ -62,3 +62,11 @@ export async function disconnect(user) {
     },
   });
 }
+
+export async function getUsersInChannel(channelId) {
+  return await prisma.user.findMany({
+    where: {
+      channelId: parseInt(channelId),
+    },
+  });
+}
