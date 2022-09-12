@@ -50,3 +50,9 @@ export async function enterChannel(channelId, userId) {
 
   return user;
 }
+
+export async function disconnect(userId) {
+  const user = await userRepository.findUserById(userId);
+
+  return await userRepository.disconnect(user);
+}

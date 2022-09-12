@@ -51,3 +51,14 @@ export async function enterChannel(channelId, userId) {
   });
   return newChannel;
 }
+
+export async function disconnect(user) {
+  return await prisma.user.update({
+    where: {
+      id: user.id,
+    },
+    data: {
+      channel: { disconnect: true },
+    },
+  });
+}

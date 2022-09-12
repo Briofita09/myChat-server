@@ -35,4 +35,10 @@ userRouter.post(
   userController.enterChannel
 );
 
+userRouter.delete(
+  "/channels",
+  isAuhtenticatedMiddleware,
+  userController.disconnect
+);
+
 export { userRouter };

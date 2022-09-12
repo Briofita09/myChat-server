@@ -74,10 +74,22 @@ export async function enterChannel(req, res) {
 
     if (!user)
       return res.status(500).json({ message: "Ocorreu um erro no servidor" });
-    console.log(channelId);
     return res
       .status(200)
       .json({ message: `Usuario logado no canal ${channelId}` });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Ocorreu um erro no servidor" });
+  }
+}
+
+export async function disconnect(_req, res) {
+  try {
+    const userId = res.locals;
+
+    await userService.disconnect(userId);
+
+    return res.status(200).json({ message: "Usuário desconectado do canal" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Ocorreu um erro no servidor" });
