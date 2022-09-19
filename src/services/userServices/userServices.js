@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
 
+import { io } from "../../server.js";
 import * as userRepository from "../../repositories/userRepository/userRepository.js";
 
 const numberOfSalts = 10;
@@ -47,6 +48,15 @@ export async function enterChannel(channelId, userId) {
   const user = await userRepository.enterChannel(channelId, userId);
 
   if (!user) return null;
+
+  /*   io.on("connection", (socket) => {
+    socket.on("channelConnect", (data) => {
+      if (user.channelId !== data.channelId) {
+        socket.join(data.channel);
+        io.to(data.channel).emit("channelConnect", data);
+      }
+    });
+  }); */
 
   return user;
 }
