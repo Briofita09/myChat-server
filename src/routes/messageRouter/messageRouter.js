@@ -9,7 +9,6 @@ const messageRouter = Router();
 
 messageRouter.post(
   "/messages",
-  validateSchemaMiddleware(MessageSchema),
   isAuhtenticatedMiddleware,
   messageController.newMessage
 );
