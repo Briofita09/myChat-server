@@ -1,6 +1,7 @@
 import * as messageService from "../../services/messageServices/messageServices.js";
 
 export async function newMessage(req, res) {
+  console.log("1");
   try {
     const message = req.body;
     const user = res.locals;

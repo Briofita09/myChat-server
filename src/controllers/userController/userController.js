@@ -41,14 +41,12 @@ export async function getUser(_req, res) {
     if (!user)
       return res.status(404).json({ message: "Usuário não encontrado" });
 
-    return res
-      .status(200)
-      .json({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        channel: user.channelId,
-      });
+    return res.status(200).json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      channel: user.channelId,
+    });
   } catch (err) {
     console.log(err);
   }

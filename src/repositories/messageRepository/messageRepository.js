@@ -16,6 +16,9 @@ export async function getMessages(channelId) {
     where: {
       channelId,
     },
+    include: {
+      author: true,
+    },
   });
   return messages;
 }
