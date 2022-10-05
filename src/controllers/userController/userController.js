@@ -43,7 +43,12 @@ export async function getUser(_req, res) {
 
     return res
       .status(200)
-      .json({ name: user.name, email: user.email, channel: user.channelId });
+      .json({
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        channel: user.channelId,
+      });
   } catch (err) {
     console.log(err);
   }
