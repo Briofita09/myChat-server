@@ -46,7 +46,8 @@ export async function enterChannel(channelId, userId) {
       id: userId,
     },
     data: {
-      channel: { connect: { id: parseInt(channelId) } },
+      channel: { connect: { id: +channelId } },
+      isConnected: true,
     },
   });
   return newChannel;
@@ -58,7 +59,7 @@ export async function disconnect(user) {
       id: user.id,
     },
     data: {
-      channel: { disconnect: true },
+      isConnected: false,
     },
   });
 }
@@ -67,6 +68,7 @@ export async function getUsersInChannel(channelId) {
   return await prisma.user.findMany({
     where: {
       channelId: parseInt(channelId),
+      isConnected: true,
     },
   });
 }

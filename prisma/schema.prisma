@@ -15,6 +15,7 @@ model User {
   name          String
   password      String
   email         String @unique
+  isConnected   Boolean @default(false)
   channelId     Int?
   channel       Channel? @relation(fields: [channelId], references: [id])
   followedBy    User[]  @relation("UserFollows")
